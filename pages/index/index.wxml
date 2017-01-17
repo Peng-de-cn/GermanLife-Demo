@@ -1,0 +1,41 @@
+<view class="actionbar">
+  <view class="actionbarView">
+    <view class="actionbar_icon_view">
+      <image class="actionbar_icon" mode="aspectFill" src="../../images/menu.png" style="background-size: cover; background-position: center center; background-repeat: no-repeat; " />
+    </view>
+
+    <!--       <view class="actionbar_icon_view">
+        <image class="actionbar_icon" mode="aspectFill" src="../../images/search.png" style="background-size: cover; background-position: center center; background-repeat: no-repeat; " />
+      </view> -->
+  </view>
+  <picker bindchange="chooseCityChanged" value="{{regionsIndex}}" range="{{regions}}">
+    <view class="actionbarView">
+      <view class="actionbar_icon_view">
+        <image class="actionbar_cityIcon" mode="aspectFit" src="../../images/city.png" />
+      </view>
+      <view>{{regions[regionsIndex]}}</view>
+      <view class="actionbar_icon_view">
+        <image class="actionbar_cityIcon" mode="aspectFit" src="../../images/expand_more.png" />
+      </view>
+    </view>
+  </picker>
+  <view class="actionbarView">
+    <view class="actionbar_icon_view">
+      <image class="actionbar_icon" mode="aspectFill" src="../../images/more_horiz.png" style="background-size: cover; background-position: center center; background-repeat: no-repeat; " />
+    </view>
+  </view>
+</view>
+<scroll-view class="page-body" scroll-y="true">
+  <navigator url="../../details" wx:for="{{dummyPosts}}">
+    <view class="item">
+      <image class="poster" src="{{item.image}}"></image>
+      <view class="meta">
+        <text class="title">{{item.title}}</text>
+      </view>
+      <view class="reply">
+        <text>{{item.replies}}</text>
+      </view>
+    </view>
+  </navigator>
+</scroll-view>
+<image src="../../images/fab_add.png" class="fab" bindtap="onFabClick"></image>

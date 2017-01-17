@@ -1,0 +1,13 @@
+.fab {
+  float: right;
+  background-color: #00AA00;
+  position: fixed;
+  padding:15rpx;
+  bottom: 20px;
+  right: 20px;
+  border: 0 solid #fff;
+  border-radius: 500px;
+  box-shadow: 4px 1px 1px #ccc;
+  width: 80rpx;
+  height: 80rpx;
+}

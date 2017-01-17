@@ -1,0 +1,54 @@
+<view class="container container-gray">
+  <view class="group">
+    <view class="group-body">
+      <view class="input-list">
+        <view class="input-item">
+          <text class="input-item-label">房子地址</text>
+          <view class="input-item-content">
+            <input type="text" placeholder="请输入房子地址"></input>
+          </view>
+        </view>
+        <view class="input-item input-item-full">
+          <text class="input-item-label">房子介绍</text>
+          <textarea placeholder="可输入140字" maxlength="140"></textarea>
+        </view>
+        <view class="input-item input-item-full">
+          <text class="input-item-label">房子照片</text>
+          <view class="img-upload">
+            <view class="img-item">
+              <image src="" mode="aspectFill"></image>
+            </view>
+            <view class="img-item">
+              <image src="" mode="aspectFill"></image>
+            </view>
+            <view class="img-item">
+              <image src="" mode="aspectFill"></image>
+            </view>
+            <view class="img-item">
+              <image src="" mode="aspectFill"></image>
+            </view>
+            <view class="img-item">
+              <image src="" mode="aspectFill"></image>
+            </view>
+            <view class="img-item">
+              <image src="" mode="aspectFill"></image>
+            </view>
+            <view class="img-item">
+              <image src="" mode="aspectFill"></image>
+            </view>
+            <view class="img-item">
+              <image src="" mode="aspectFill"></image>
+            </view>
+            <view class="img-item">
+              <image src="" mode="aspectFill"></image>
+            </view>
+            <view class="img-add"></view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="btn-submit">
+    <button class="btn-block btn-orange" bindtap="applySubmit">提交</button>
+  </view>
+</view>
