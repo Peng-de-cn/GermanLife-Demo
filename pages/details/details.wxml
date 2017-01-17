@@ -39,9 +39,6 @@
             <view class="img-item">
               <image src="" mode="aspectFill"></image>
             </view>
-            <view class="img-item">
-              <image src="" mode="aspectFill"></image>
-            </view>
             <view class="img-add"></view>
           </view>
         </view>
