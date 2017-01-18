@@ -66,7 +66,7 @@ input{
 }
 .img-upload .img-add{
 	border: 1rpx dashed #ddd;
-	background: url(../../images/image_add.png) no-repeat 50% 50% / 70% auto;
+	background: url(../../images/add.png) no-repeat 50% 50% / 70% auto;
 }
 .img-upload .img-item image{
 	width: 140rpx;
