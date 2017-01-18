@@ -15,31 +15,10 @@
         <view class="input-item input-item-full">
           <text class="input-item-label">房子照片</text>
           <view class="img-upload">
-            <view class="img-item">
-              <image src="" mode="aspectFill"></image>
+            <view class="img-item" wx:for="{{imagePath}}">
+              <image src="{{item}}" data-index="{{index}}" mode="aspectFill" bindtap='deleteImage'></image>
             </view>
-            <view class="img-item">
-              <image src="" mode="aspectFill"></image>
-            </view>
-            <view class="img-item">
-              <image src="" mode="aspectFill"></image>
-            </view>
-            <view class="img-item">
-              <image src="" mode="aspectFill"></image>
-            </view>
-            <view class="img-item">
-              <image src="" mode="aspectFill"></image>
-            </view>
-            <view class="img-item">
-              <image src="" mode="aspectFill"></image>
-            </view>
-            <view class="img-item">
-              <image src="" mode="aspectFill"></image>
-            </view>
-            <view class="img-item">
-              <image src="" mode="aspectFill"></image>
-            </view>
-            <view class="img-add"></view>
+            <view class="img-add" hidden="{{hideAddIcon}}"  bindtap="uploadImage"></view>
           </view>
         </view>
       </view>

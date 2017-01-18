@@ -58,8 +58,8 @@ input{
 }
 .img-upload .img-item,
 .img-upload .img-add{
-	width: 100rpx;
-	height: 100rpx;
+	width: 140rpx;
+	height: 140rpx;
 	float: left;
 	margin: 10rpx;
 	border: 1rpx solid transparent;
@@ -69,8 +69,8 @@ input{
 	background: url(../../images/image_add.png) no-repeat 50% 50% / 70% auto;
 }
 .img-upload .img-item image{
-	width: 100rpx;
-	height: 100rpx;
+	width: 140rpx;
+	height: 140rpx;
 }
 .img-upload .img-item{
 	position: relative;
