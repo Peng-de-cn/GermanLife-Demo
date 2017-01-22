@@ -1,3 +1,58 @@
+Page {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+.actionbar {
+  display: flex;
+  padding: 11.25rpx 18.75rpx;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgb(209, 209, 209);
+  z-index: 100;
+  top: 0px;
+  background-color: rgba(255, 255, 255, 0.960784);
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.actionbarView {
+  display: flex;
+}
+
+.actionbar_icon_view {
+  display: flex;
+  text-align: left;
+  justify-content: center;
+}
+
+.actionbar_icon {
+  width: 72rpx;
+  height: 72rpx;
+  border-radius: 100rpx;
+  flex: 0 0 auto;
+}
+
+.actionbar_cityIcon {
+  width: 40rpx;
+  height: 40rpx;
+  flex: 0 0 auto;
+}
+
+.actionbar_city_view {
+  display: flex;
+}
+
+.actionbar_city_text {
+  display: flex;
+  text-align: left;
+  justify-content: center;
+}
+
 .fab {
   float: right;
   background-color: #00AA00;
@@ -11,3 +66,41 @@
   width: 80rpx;
   height: 80rpx;
 }
+.page-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.item {
+  display: flex;
+  padding: 20rpx 20rpx;
+  border-bottom: 2rpx solid #eee;
+}
+
+.item .poster {
+  width: 100rpx;
+  height: 100rpx;
+  margin-right: 20rpx;
+}
+
+.item .meta {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
+}
+
+.item .title {
+  font-size: 32rpx;
+}
+
+.item .type {
+  font-size: 28rpx;
+  font-weight: bold;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+

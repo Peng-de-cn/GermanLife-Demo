@@ -26,14 +26,14 @@
   </view>
 </view>
 <scroll-view class="page-body" scroll-y="true">
-  <navigator url="../../details" wx:for="{{dummyPosts}}">
+  <navigator url="../detail/detail" wx:for="{{dummyPosts}}">
     <view class="item">
-      <image class="poster" src="{{item.image}}"></image>
+      <image class="poster" src="{{item.userIcon}}"></image>
       <view class="meta">
         <text class="title">{{item.title}}</text>
       </view>
-      <view class="reply">
-        <text>{{item.replies}}</text>
+      <view class="type">
+        <text>{{item.type}}</text>
       </view>
     </view>
   </navigator>

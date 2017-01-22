@@ -26,10 +26,5 @@ App({
   },
   globalData: {
     userInfo: null,
-    postData: {
-      image: "",
-      title: "租房子测试",
-      replies: "8",
-    }
   }
 })

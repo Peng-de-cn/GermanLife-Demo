@@ -3,6 +3,17 @@ input{
 	line-height: 60rpx;
  	font-family: inherit;
 }
+textarea{
+	width: 100%;
+	padding: 20rpx;
+	box-sizing: border-box;
+}
+.radio-group{
+	margin: 10rpx;
+}
+.radio-group-item{
+	margin: 10rpx 20rpx;
+}
 .input-list{
 	padding: 0 20rpx;
 	margin: 20rpx 0;
@@ -28,6 +39,8 @@ input{
 .input-item-content{
 	color: #333;
 	flex:1;
+	padding: 0 20rpx;
+	border-left: 1rpx solid #e8e8e8;
 }
 .input-item.input-item-full{
 	display: block;
@@ -79,4 +92,11 @@ input{
 	position: absolute;
 	right: -12rpx;
 	top: -12rpx;
+}
+.btn-submit{
+	padding: 20rpx;
+}
+.btn-block{
+	width: 100%;
+	line-height: 88rpx;
 }

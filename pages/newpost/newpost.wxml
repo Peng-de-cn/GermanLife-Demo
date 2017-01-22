@@ -1,0 +1,48 @@
+<form bindsubmit="formSubmit">
+  <view class="input-list">
+    <radio-group name="type" class="radio-group" bindchange="radioChange">
+      <label class="radio-group-item" wx:for-items="{{radioItems}}">
+        <radio value="{{item.name}}" checked="{{item.checked}}">{{item.value}}</radio>
+      </label>
+    </radio-group>
+        <view class="input-item">
+      <text class="input-item-label">标题</text>
+      <view class="input-item-content">
+        <input name="title" type="text" placeholder="标题"></input>
+      </view>
+    </view>
+    <view class="input-item">
+      <text class="input-item-label">房子地址</text>
+      <view class="input-item-content">
+        <input name="street" type="text" placeholder="街道"></input>
+      </view>
+      <view class="input-item-content">
+        <input name="city" type="text" placeholder="城市"></input>
+      </view>
+    </view>
+    <view class="input-item">
+      <text class="input-item-label">所在地区</text>
+      <view class="input-item-content">
+        <picker name="region" bindchange="chooseRegionChanged" value="{{regionsIndex}}" range="{{regions}}">
+          <view>{{regions[regionsIndex]}}</view>
+        </picker>
+      </view>
+    </view>
+    <view class="input-item input-item-full">
+      <text class="input-item-label">房子介绍</text>
+      <textarea name="content" placeholder="可输入140字" maxlength="140" bindinput="textareaBindInput" value="{{}}"></textarea>
+    </view>
+    <view class="input-item input-item-full">
+      <text class="input-item-label">房子照片</text>
+      <view class="img-upload">
+        <view class="img-item" wx:for="{{imagePath}}">
+          <image src="{{item}}" data-index="{{index}}" mode="aspectFill" bindtap='deleteImage'></image>
+        </view>
+        <view class="img-add" hidden="{{hideAddIcon}}" bindtap="uploadImage"></view>
+      </view>
+    </view>
+  </view>
+  <view class="btn-submit">
+    <button type="primary" formType="submit" disabled="{{buttonDisabled}}">提交</button>
+  </view>
+</form>

@@ -1,5 +1,5 @@
 var app = getApp()
-
+var postDataKey = "PostDataKey";
 
 Page({
   data: {
@@ -28,24 +28,42 @@ Page({
 
   onLoad: function () {
     var _this = this
-    app.getUserInfo(function (userInfo) {
-      app.globalData.postData = {
-        image: userInfo.avatarUrl,
-        title: "租房子测试",
-        replies: "8",
-      }
+    // app.getUserInfo(function (userInfo) {
+    //   app.globalData.postData = {
+    //     image: userInfo.avatarUrl,
+    //     title: "租房子测试",
+    //     replies: "8",
+    //   }
 
-      var posts = [];
+    //   var posts = [];
 
-      for (var i = 0; i < 20; i++) {
-         posts.unshift(app.globalData.postData);
-      }
+    //   for (var i = 0; i < 20; i++) {
+    //      posts.unshift(app.globalData.postData);
+    //   }
 
-      _this.setData({
-        userInfo: userInfo,
+    //   _this.setData({
+    //     userInfo: userInfo,
+    //     dummyPosts: posts
+    //   })
+    // })
+
+       wx.getStorage({
+        key: postDataKey,
+        success: function(res){
+          console.log(res.data)
+          var posts = [];
+          posts.unshift(res.data);
+           _this.setData({
         dummyPosts: posts
       })
-    })
+        },
+        fail: function() {
+          // fail
+        },
+        complete: function() {
+          // complete
+        }
+      })
   },
 
   chooseCityChanged: function (e) {
@@ -57,7 +75,7 @@ Page({
 
   onFabClick: function() {
       wx.navigateTo({
-        url: '../details/details',
+        url: '../newpost/newpost',
         success: function(res){
           // success
         },
