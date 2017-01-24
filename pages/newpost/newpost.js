@@ -11,6 +11,7 @@ var postData = {
     title: "",
     content: "",
     images: [],
+    replies: [],
 };
 
 Page({
@@ -48,7 +49,7 @@ Page({
         var _this = this
         app.getUserInfo(function (userInfo) {
             postData.userIcon = userInfo.avatarUrl,
-            postData.userName = userInfo.nickName
+                postData.userName = userInfo.nickName
         })
     },
 
@@ -130,13 +131,19 @@ Page({
         postData.images = this.data.imagePath;
         console.log("test: ", postData);
 
-        wx.setStorage({ key: postDataKey, data: postData });
-        // wx.getStorage({
-        //     key: postDataKey,
-        //     success: function (res) {
-        //         console.log(res.data)
-        //     }
-        // })
+        wxGetStorage(postDataKey, function (data) {
+            if (data != "fail") {
+                var postDatas = data;
+                postDatas.unshift(postData);
+                console.log(postDatas);
+                wx.setStorage({ key: postDataKey, data: postDatas });
+            } else {
+                var postDatas = [];
+                postDatas.push(postData);
+                wx.setStorage({ key: postDataKey, data: postDatas });
+            }
+
+        });
 
         wx.navigateBack({
             url: '../index/index',
@@ -152,4 +159,23 @@ Page({
         })
     }
 
-})
+});
+
+function wxGetStorage(postDataKey, callback) {
+    wx.getStorage({
+        key: postDataKey,
+        success: function (res) {
+            if (callback) {
+                var data = res.data;
+                callback(data);
+            }
+        },
+        fail: function () {
+            if (callback) {
+                callback("fail");
+            }
+        },
+        complete: function () {
+        }
+    })
+};

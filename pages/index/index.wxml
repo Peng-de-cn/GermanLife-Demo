@@ -30,7 +30,10 @@
     <view class="item">
       <image class="poster" src="{{item.userIcon}}"></image>
       <view class="meta">
-        <text class="title">{{item.title}}</text>
+        <view class="title-view">
+          <view class="title-area">{{item.region}}</view>
+          <text class="title">{{item.title}}</text>
+        </view>
       </view>
       <view class="type">
         <text>{{item.type}}</text>

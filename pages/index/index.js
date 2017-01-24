@@ -23,47 +23,21 @@ Page({
     regionsIndex: 0,
     userInfo: {},
     dummyPosts: [],
-
   },
 
   onLoad: function () {
+    console.log("onLoad");
+  },
+
+  onShow: function () {
+    console.log("onShow");
     var _this = this
-    // app.getUserInfo(function (userInfo) {
-    //   app.globalData.postData = {
-    //     image: userInfo.avatarUrl,
-    //     title: "租房子测试",
-    //     replies: "8",
-    //   }
-
-    //   var posts = [];
-
-    //   for (var i = 0; i < 20; i++) {
-    //      posts.unshift(app.globalData.postData);
-    //   }
-
-    //   _this.setData({
-    //     userInfo: userInfo,
-    //     dummyPosts: posts
-    //   })
-    // })
-
-       wx.getStorage({
-        key: postDataKey,
-        success: function(res){
-          console.log(res.data)
-          var posts = [];
-          posts.unshift(res.data);
-           _this.setData({
-        dummyPosts: posts
+    wxGetStorage(postDataKey, function (data) {
+      _this.setData({
+        dummyPosts: data,
       })
-        },
-        fail: function() {
-          // fail
-        },
-        complete: function() {
-          // complete
-        }
-      })
+      console.log(_this.data.dummyPosts);
+    });
   },
 
   chooseCityChanged: function (e) {
@@ -73,18 +47,35 @@ Page({
 
   },
 
-  onFabClick: function() {
-      wx.navigateTo({
-        url: '../newpost/newpost',
-        success: function(res){
-          // success
-        },
-        fail: function() {
-          // fail
-        },
-        complete: function() {
-          // complete
-        }
-      })
+  onFabClick: function () {
+    wx.navigateTo({
+      url: '../newpost/newpost',
+      success: function (res) {
+        // success
+      },
+      fail: function () {
+        // fail
+      },
+      complete: function () {
+        // complete
+      }
+    })
   }
-})
+});
+
+function wxGetStorage(postDataKey, callback) {
+  wx.getStorage({
+    key: postDataKey,
+    success: function (res) {
+      if (callback) {
+        var data = res.data;
+        callback(data);
+      }
+    },
+    fail: function () {
+      console.log("getStorage fail");
+    },
+    complete: function () {
+    }
+  })
+};

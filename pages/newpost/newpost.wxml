@@ -5,7 +5,7 @@
         <radio value="{{item.name}}" checked="{{item.checked}}">{{item.value}}</radio>
       </label>
     </radio-group>
-        <view class="input-item">
+    <view class="input-item">
       <text class="input-item-label">标题</text>
       <view class="input-item-content">
         <input name="title" type="text" placeholder="标题"></input>
@@ -38,7 +38,7 @@
         <view class="img-item" wx:for="{{imagePath}}">
           <image src="{{item}}" data-index="{{index}}" mode="aspectFill" bindtap='deleteImage'></image>
         </view>
-        <view class="img-add" hidden="{{hideAddIcon}}" bindtap="uploadImage"></view>
+        <image class="img-add" src="../../images/image_add.png" hidden="{{hideAddIcon}}" bindtap="uploadImage"></image>
       </view>
     </view>
   </view>

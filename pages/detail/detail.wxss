@@ -40,13 +40,13 @@ Page {
 }
 
 .icon {
-  width: 100rpx;
-  height: 100rpx;
+  width: 60rpx;
+  height: 60rpx;
 }
 
 .name {
   margin: 10rpx 0;
-  font-size: 28rpx;
+  font-size: 20rpx;
   justify-content: center;
 }
 
@@ -74,7 +74,7 @@ Page {
 .replyForm {
   display: flex;
   flex-direction: raw;
-  padding: 5rpx;
+  padding: 10rpx;
 }
 
 .replyInput {

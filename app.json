@@ -1,9 +1,8 @@
 {
   "pages": [
-    "pages/detail/detail",
     "pages/index/index",
-    "pages/newpost/newpost"
-    
+    "pages/newpost/newpost",
+    "pages/detail/detail"
   ],
   "window": {
     "backgroundTextStyle": "light",
