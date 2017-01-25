@@ -31,20 +31,17 @@ Page({
 
   onShow: function () {
     console.log("onShow");
-    var _this = this
-    wxGetStorage(postDataKey, function (data) {
-      _this.setData({
-        dummyPosts: data,
-      })
-      console.log(_this.data.dummyPosts);
-    });
+    loadPostList(this, postDataKey, this.data.regionsIndex);
   },
 
   chooseCityChanged: function (e) {
+    var _this = this;
+    var regionsIndex = e.detail.value;
     this.setData({
-      regionsIndex: e.detail.value
+      regionsIndex: regionsIndex
     })
 
+    loadPostList(_this, postDataKey, regionsIndex);
   },
 
   onFabClick: function () {
@@ -58,6 +55,17 @@ Page({
       },
       complete: function () {
         // complete
+      }
+    })
+  },
+
+  onPostItemClick: function (res) {
+    var postId = res.currentTarget.dataset.id;
+    console.log("index postId: ", postId);
+    wx.navigateTo({
+      url: '../detail/detail?id=' + postId,
+      success: function (res) {
+        // success
       }
     })
   }
@@ -79,3 +87,25 @@ function wxGetStorage(postDataKey, callback) {
     }
   })
 };
+
+function loadPostList(_this, postDataKey, regionsIndex) {
+    wxGetStorage(postDataKey, function (data) {
+      var region = _this.data.regions[regionsIndex];
+      var dummyPosts = [];
+      if (regionsIndex == 0) {
+        dummyPosts = data;
+      } else {
+        for (var i = 0; i < data.length; i++) {
+          var postData = data[i];
+          if (postData.region == region) {
+            dummyPosts.push(postData);
+          }
+        }
+      }
+
+      _this.setData({
+        dummyPosts: dummyPosts,
+      })
+      console.log(_this.data.dummyPosts);
+    });
+}

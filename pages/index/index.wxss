@@ -9,7 +9,7 @@ Page {
 
 .actionbar {
   display: flex;
-  padding: 11.25rpx 18.75rpx;
+  padding: 12rpx 0;
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid rgb(209, 209, 209);

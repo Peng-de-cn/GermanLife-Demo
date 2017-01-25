@@ -2,6 +2,7 @@ var app = getApp()
 
 var postDataKey = "PostDataKey";
 var postData = {
+    postID: "",
     userIcon: "",
     userName: "",
     type: "",
@@ -11,7 +12,6 @@ var postData = {
     title: "",
     content: "",
     images: [],
-    replies: [],
 };
 
 Page({
@@ -66,7 +66,6 @@ Page({
     textareaBindInput: function (e) {
         var length = e.detail.value.length;
         var disabled = length == 0 || this.data.regionsIndex == 0;
-        console.log(disabled);
         this.setData({
             textLength: length,
             buttonDisabled: disabled
@@ -83,12 +82,8 @@ Page({
                 var tmpImagePath = _this.data.imagePath;
                 var tempFilePaths = res.tempFilePaths;
                 tmpImagePath = tmpImagePath.concat(tempFilePaths);
-                var tmpHideAddIcon = false;
-                var tmpImageCount = 9 - res.tempFilePaths.length;
-                if (tmpImageCount == 0) {
-                    tmpHideAddIcon = true;
-                }
-
+                var tmpImageCount = Math.abs(tmpImagePath.length - 9);
+                var tmpHideAddIcon = tmpImagePath.length == 9;
                 _this.setData({
                     imagePath: tmpImagePath,
                     imageCount: tmpImageCount,
@@ -109,7 +104,7 @@ Page({
         var tmpImagePath = this.data.imagePath;
         tmpImagePath.splice(e.target.dataset.index, 1);
         var tmpHideAddIcon = false;
-        var tmpImageCount = 9 - tmpImagePath.length;
+        var tmpImageCount = Math.abs(tmpImagePath.length - 9);
         if (tmpImageCount == 0) {
             tmpHideAddIcon = true;
         }
@@ -129,13 +124,12 @@ Page({
         postData.region = this.data.regions[value.region];
         postData.content = value.content;
         postData.images = this.data.imagePath;
-        console.log("test: ", postData);
+        postData.postID = getRandomIntInclusive(1000, 9999);
 
         wxGetStorage(postDataKey, function (data) {
             if (data != "fail") {
                 var postDatas = data;
                 postDatas.unshift(postData);
-                console.log(postDatas);
                 wx.setStorage({ key: postDataKey, data: postDatas });
             } else {
                 var postDatas = [];
@@ -178,4 +172,10 @@ function wxGetStorage(postDataKey, callback) {
         complete: function () {
         }
     })
+};
+
+function getRandomIntInclusive(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 };

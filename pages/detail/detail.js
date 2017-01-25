@@ -1,5 +1,8 @@
 var postDataKey = "PostDataKey";
+var postDetailDataKey = "postDetailDataKey";
 var postData = {};
+var postDetailData = {};
+var postID = "";
 
 Page({
   data: {
@@ -13,44 +16,72 @@ Page({
     longitude: "",
     markers: [],
     replies: [],
+    replyData: {
+      postID: "",
+      replies: [],
+    },
+    repliesData: [],
     replyInputValue: "",
     inputValue: "",
-    mapHidden: true,
+    postReplyIndex: -1,
   },
+
   onLoad: function (options) {
     var _this = this;
-    wxGetStorage(postDataKey, function (data) {
-      postData = data;
-      if (data.street || data.city) {
-        _this.setData({
-          mapHidden: false
-        });
-        var address = data.street + " " + data.city;
-        console.log("address: ", address);
+    postID = options.id;
 
-        wxRequest(address, function (data) {
-          var lat = data.results[0].geometry.location.lat;
-          var lng = data.results[0].geometry.location.lng;
-          _this.setData({
-            userIcon: postData.userIcon,
-            userName: postData.userName,
-            title: postData.title,
-            content: postData.content,
-            replies: postData.replies,
-            address: address,
+    wxGetStorage(postDataKey, function (data) {
+
+      for (var i = 0; i < data.length; i++) {
+        if (postID == data[i].postID) {
+          postData = data[i];
+        }
+      }
+      var address = "";
+
+      if (postData.city) {
+        address = postData.street + " " + postData.city;
+      } else {
+        address = "Germany";
+      }
+
+      wxRequest(address, function (data) {
+        var lat = data.results[0].geometry.location.lat;
+        var lng = data.results[0].geometry.location.lng;
+        if (!postData.city) {
+          address = "很可惜，楼主没有给出地址";
+        }
+        _this.setData({
+          userIcon: postData.userIcon,
+          userName: postData.userName,
+          title: postData.title,
+          content: postData.content,
+          address: address,
+          latitude: lat,
+          longitude: lng,
+          markers: [{
+            id: 0,
             latitude: lat,
             longitude: lng,
-            markers: [{
-              id: 0,
-              latitude: lat,
-              longitude: lng,
-            }]
-          })
-        });
-      } else {
-        _this.setData({
-          mapHidden: true
-        });
+          }]
+        })
+      });
+    });
+
+    wxGetStorage(postDetailDataKey, function (data) {
+      console.log(data);
+      postDetailData = data;
+      _this.setData({
+        repliesData: postDetailData,
+      });
+
+      for (var i = 0; i < data.length; i++) {
+        if (postID == data[i].postID) {
+          _this.setData({
+            replies: data[i].replies,
+            postReplyIndex: i,
+          });
+        }
       }
     });
   },
@@ -84,20 +115,32 @@ Page({
   bindInputSubmit: function (e) {
     var value = e.detail.value;
     var replies = this.data.replies;
-    console.log(replies);
     if (replies) {
       replies.push(value.reply);
     } else {
       replies = [value.reply];
     }
 
+    var replyData = this.data.replyData;
+    replyData.postID = postID;
+    replyData.replies = replies;
+
+    var repliesData = this.data.repliesData;
+
+    if (this.data.postReplyIndex == -1) {
+      repliesData.push(replyData);
+    } else {
+      repliesData.splice(this.data.postReplyIndex, 1, replyData);
+    }
+
     this.setData({
       replies: replies,
+      repliesData: repliesData,
       replyInputValue: "",
+      inputValue: "",
     });
-    postData.replies = replies;
-    console.log(postData);
-    wx.setStorage({ key: postDataKey, data: postData });
+
+    wx.setStorage({ key: postDetailDataKey, data: this.data.repliesData });
   },
 
   onInputChange: function (e) {
@@ -134,6 +177,7 @@ function wxGetStorage(postDataKey, callback) {
 };
 
 function wxRequest(data, callback) {
+  console.log("google data: ", data);
   wx.request({
     url: 'https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyCu2UEmbQ-KuH1FQQqLV4_dhyJy5h7rzAo',
     data: { address: data },

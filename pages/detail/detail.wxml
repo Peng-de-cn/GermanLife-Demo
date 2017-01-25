@@ -4,17 +4,16 @@
       <image class="icon" src="{{userIcon}}"></image>
       <view class="name">{{userName}}</view>
     </view>
-    <view hidden="{{mapHidden}}">
-      <view class="meta">
-        <text class="title">{{title}}</text>
-        <view class="address">
-          <view>地址：</view>
-          <text>{{address}}</text>
-        </view>
-        <view class="mapView">
-          <map class="class" id="map" latitude="{{latitude}}" longitude="{{longitude}}" scale="14" controls="{{controls}}" bindcontroltap="controltap" markers="{{markers}}"></map>
-          <view class="openMapText" catchtap="onOpenMapPageClick">在大地图页面打开</view>
-        </view>
+    <view class="meta">
+      <text class="title">{{title}}</text>
+      <view class="address">
+        <view>地址：</view>
+        <text>{{address}}</text>
+      </view>
+      <view class="mapView">
+        <map class="class" id="map" latitude="{{latitude}}" longitude="{{longitude}}" scale="14" controls="{{controls}}"
+             bindcontroltap="controltap" markers="{{markers}}"></map>
+        <view class="openMapText" hidden="{{mapButtonHidden}}" catchtap="onOpenMapPageClick">在大地图页面打开</view>
       </view>
       <text class="content">{{content}}</text>
     </view>
@@ -33,7 +32,7 @@
 </scroll-view>
 <form bindsubmit="bindInputSubmit">
   <view class="replyForm">
-    <input class="replyInput" name="reply" type="text" value="{{replyInputValue}}" bindinput="onInputChange" />
+    <input class="replyInput" name="reply" type="text" value="{{replyInputValue}}" bindinput="onInputChange"  />
     <button class="replySendButton" size="mini" type="primary" formType="submit">发送</button>
   </view>
 </form>
