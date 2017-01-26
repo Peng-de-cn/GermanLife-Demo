@@ -15,6 +15,7 @@ Page({
     latitude: "",
     longitude: "",
     markers: [],
+    imagePath: [],
     replies: [],
     replyData: {
       postID: "",
@@ -24,6 +25,8 @@ Page({
     replyInputValue: "",
     inputValue: "",
     postReplyIndex: -1,
+    showBigPhoto: false,
+    selectedId: 0,
   },
 
   onLoad: function (options) {
@@ -63,7 +66,8 @@ Page({
             id: 0,
             latitude: lat,
             longitude: lng,
-          }]
+          }],
+          imagePath: postData.images,
         })
       });
     });
@@ -110,6 +114,23 @@ Page({
       scale: 28,
       name: this.data.address
     })
+  },
+
+  openBigPhoto: function (res) {
+    console.log("openPhoto: ", res);
+    var index = res.currentTarget.dataset.index;
+
+    this.setData({
+      showBigPhoto: true,
+      selectedId: index,
+    });
+
+  },
+
+  hideBigPhoto: function (res) {
+    this.setData({
+      showBigPhoto: false,
+    });
   },
 
   bindInputSubmit: function (e) {

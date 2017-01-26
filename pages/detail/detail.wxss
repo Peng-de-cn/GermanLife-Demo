@@ -71,6 +71,21 @@ Page {
   color: #06f;
 }
 
+.img-upload {
+  margin: 20rpx 0;
+}
+
+.img-item {
+  float: left;
+  margin: 5rpx;
+  position: relative;
+}
+
+.img-item image {
+  width: 180rpx;
+  height: 180rpx;
+}
+
 .replyForm {
   display: flex;
   flex-direction: raw;
@@ -89,4 +104,18 @@ Page {
 
 .replySendButton {
   text-align: center;
+}
+
+.swiper-container {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+}
+
+.swiper-container image {
+    width: 100%;
+    height: 100%;
 }
